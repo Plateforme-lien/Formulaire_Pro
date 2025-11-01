@@ -247,7 +247,7 @@ input[type="date"] {
       <div class="radio-group">
         <label><input type="radio" name="Type Numéro" value="adeli" id="radioAdeli"> Oui, j'ai un numéro ADELI</label>
         <label><input type="radio" name="Type Numéro" value="siret" id="radioSiret"> Oui, j'ai un numéro SIRET</label>
-        <label><input type="radio" name="Type Numéro" value="non" id="radioNon" required> Non, je n'ai pas de numéro</label>
+        <label><input type="radio" name="Type Numéro" value="non" id="radioNon"> Non, je n'ai pas de numéro</label>
       </div>
     </div>
 
@@ -294,7 +294,7 @@ input[type="date"] {
       <div class="question">
         <label>Proposez-vous des rendez-vous en visio ? <span class="required">*</span></label>
         <div class="radio-group">
-          <label><input type="radio" name="Visio" value="Oui" required> Oui</label>
+          <label><input type="radio" name="Visio" value="Oui"> Oui</label>
           <label><input type="radio" name="Visio" value="Non"> Non</label>
         </div>
       </div>
@@ -339,7 +339,7 @@ input[type="date"] {
       <div class="question">
         <label>Avez-vous une ou des disponibilités à venir pour de nouveaux bénéficiaires ? <span class="required">*</span></label>
         <div class="radio-group">
-          <label><input type="radio" name="A Disponibilité" value="Oui" id="radioDispoOui" required> Oui</label>
+          <label><input type="radio" name="A Disponibilité" value="Oui" id="radioDispoOui"> Oui</label>
           <label><input type="radio" name="A Disponibilité" value="Non" id="radioDispoNon"> Non</label>
         </div>
       </div>
@@ -556,7 +556,9 @@ inputEmail.addEventListener('keypress', function(e) {
   }
 });
 
-btnVerifierEmail.addEventListener('click', async function() {
+btnVerifierEmail.addEventListener('click', async function(e) {
+  e.preventDefault(); // Empêcher la soumission du formulaire
+  
   const email = inputEmail.value.trim();
 
   if (!email || !email.includes('@')) {
@@ -750,6 +752,13 @@ formulaire.addEventListener('submit', async function(e){
     isValid = false;
   }
 
+  // Vérifier qu'un type de numéro est sélectionné
+  const typeNumeroChecked = document.querySelector('input[name="Type Numéro"]:checked');
+  if (!typeNumeroChecked) {
+    alert('Veuillez sélectionner si vous avez un numéro professionnel.');
+    isValid = false;
+  }
+
   if(!radioNon.checked) {
     const publicsChecked = document.querySelectorAll('input[name="Publics"]:checked');
     if(publicsChecked.length === 0){
@@ -763,19 +772,44 @@ formulaire.addEventListener('submit', async function(e){
       isValid = false;
     }
 
+    // Vérifier Visio
+    const visioChecked = document.querySelector('input[name="Visio"]:checked');
+    if (!visioChecked) {
+      alert('Veuillez indiquer si vous proposez des rendez-vous en visio.');
+      isValid = false;
+    }
+
+    // Vérifier Disponibilité
+    const dispoChecked = document.querySelector('input[name="A Disponibilité"]:checked');
+    if (!dispoChecked) {
+      alert('Veuillez indiquer si vous avez des disponibilités.');
+      isValid = false;
+    }
+
     if(radioDispoOui.checked && !dateDisponibilite.value) {
       document.getElementById('errorDate').classList.add('show-error');
       isValid = false;
     }
 
-    if(!selectDepartement.value) isValid = false;
-    if(!communeInput.value.trim()) isValid = false;
-    if(!document.getElementById('rayon').value) isValid = false;
-    if(!document.getElementById('consentement').checked) isValid = false;
+    if(!selectDepartement.value) {
+      alert('Veuillez sélectionner un département.');
+      isValid = false;
+    }
+    if(!communeInput.value.trim()) {
+      alert('Veuillez indiquer votre commune.');
+      isValid = false;
+    }
+    if(!document.getElementById('rayon').value) {
+      alert('Veuillez sélectionner un rayon d\'intervention.');
+      isValid = false;
+    }
+    if(!document.getElementById('consentement').checked) {
+      alert('Veuillez accepter le consentement.');
+      isValid = false;
+    }
   }
 
   if(!isValid){
-    alert('Veuillez remplir tous les champs obligatoires.');
     return;
   }
 
