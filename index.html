@@ -204,7 +204,8 @@ input[type="date"] {
       <div class="error" id="errorEmail">Veuillez entrer une adresse e-mail valide</div>
     </div>
     <button type="button" id="btnVerifierEmail" style="margin-top:10px; background:#17a2b8;">Vérifier mon e-mail</button>
-    <p id="emailStatus" style="margin-top:8px; font-style:italic; color:#555;"></p>
+    
+    <div id="emailStatus" style="display:none; margin-top:15px; padding:12px; border-radius:6px; font-size:14px; text-align:center;"></div>
 
     <!-- Bloc caché au départ -->
     <div id="blocQuestions" class="hidden">
@@ -568,6 +569,10 @@ btnVerifierEmail.addEventListener('click', async function(e) {
 
   btnVerifierEmail.disabled = true;
   btnVerifierEmail.textContent = "⏳ Vérification en cours...";
+  emailStatus.style.display = 'block';
+  emailStatus.style.background = '#fff9e6';
+  emailStatus.style.border = '2px solid #ffc107';
+  emailStatus.style.color = '#856404';
   emailStatus.textContent = "Vérification de l'adresse e-mail...";
   blocQuestions.classList.add('hidden');
   messageEmailExiste.classList.add('hidden');
