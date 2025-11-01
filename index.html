@@ -166,12 +166,12 @@ button:disabled { background: #95a5a6; cursor: not-allowed; }
     
     <div class="question">
       <label>Nom <span class="required">*</span></label>
-      <input type="text" name="Nom" id="nom" required>
+      <input type="text" name="Nom" id="nom">
     </div>
 
     <div class="question">
       <label>Prénom <span class="required">*</span></label>
-      <input type="text" name="Prénom" id="prenom" required>
+      <input type="text" name="Prénom" id="prenom">
     </div>
 
     <div class="question">
@@ -182,7 +182,7 @@ button:disabled { background: #95a5a6; cursor: not-allowed; }
 
     <div class="question">
       <label>Profession <span class="required">*</span></label>
-      <select name="Profession" id="profession" required>
+      <select name="Profession" id="profession">
         <option value="">-- Choisir --</option>
         <option value="Éducateur spécialisé">Éducateur spécialisé</option>
         <option value="Ergothérapeute">Ergothérapeute</option>
@@ -261,7 +261,7 @@ button:disabled { background: #95a5a6; cursor: not-allowed; }
 
       <div class="question">
         <label>Département principal <span class="required">*</span></label>
-        <select name="Département" id="departement" required>
+        <select name="Département" id="departement">
           <option value="">-- Choisir --</option>
           <option value="54 - Meurthe-et-Moselle">54 - Meurthe-et-Moselle</option>
           <option value="55 - Meuse">55 - Meuse</option>
@@ -740,6 +740,27 @@ formulaire.addEventListener('submit', async function(e) {
   document.querySelectorAll('.error-msg').forEach(el => el.classList.remove('show'));
   
   let isValid = true;
+  
+  // Validation formulaire
+  let isValid = true;
+  
+  // Nom
+  if (!$('nom').value.trim()) {
+    alert('Veuillez entrer votre nom');
+    isValid = false;
+  }
+  
+  // Prénom
+  if (!$('prenom').value.trim()) {
+    alert('Veuillez entrer votre prénom');
+    isValid = false;
+  }
+  
+  // Profession
+  if (!$('profession').value) {
+    alert('Veuillez sélectionner votre profession');
+    isValid = false;
+  }
   
   // Validation téléphone
   const tel = telephone.value.trim();
