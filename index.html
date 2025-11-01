@@ -474,17 +474,174 @@ async function preremplirFormulaire(userData) {
     return;
   }
 
+  // Fonction helper pour chercher une clé (avec ou sans espaces/majuscules)
+  function getVal(key1, key2) {
+    return userData[key1] || userData[key2] || userData[key1.toLowerCase()] || 
+           userData[key1.toLowerCase().replace(/\s+/g, '')] || '';
+  }
+
   // Champs simples
-  if (userData['Nom']) {
-    document.getElementById('nom').value = userData['Nom'];
-    console.log('✅ Nom:', userData['Nom']);
+  const nom = getVal('Nom', 'nom');
+  const prenom = getVal('Prénom', 'prenom');
+  const telephone = getVal('Téléphone', 'telephone');
+  const profession = getVal('Profession', 'profession');
+  
+  if (nom) {
+    document.getElementById('nom').value = nom;
+    console.log('✅ Nom:', nom);
   }
-  if (userData['Prénom']) {
-    document.getElementById('prenom').value = userData['Prénom'];
-    console.log('✅ Prénom:', userData['Prénom']);
+  if (prenom) {
+    document.getElementById('prenom').value = prenom;
+    console.log('✅ Prénom:', prenom);
   }
-  if (userData['Téléphone']) {
-    document.getElementById('telephone').value = userData['Téléphone'];
+  if (telephone) {
+    document.getElementById('telephone').value = telephone;
+    console.log('✅ Téléphone:', telephone);
+  }
+  if (profession) {
+    document.getElementById('profession').value = profession;
+    console.log('✅ Profession:', profession);
+  }
+
+  // Type numéro - AFFICHER TOUTES LES SECTIONS
+  const typeNumero = getVal('Type Numéro', 'typenumero');
+  console.log('🔑 Type Numéro:', typeNumero);
+  
+  if (typeNumero === 'adeli') {
+    radioAdeli.checked = true;
+    questionAdeli.classList.remove('hidden');
+    suiteFomulaire.classList.remove('hidden');
+    inputAdeli.setAttribute('required', 'required');
+    const adeliNum = getVal('Numéro ADELI', 'numeroadeli');
+    if (adeliNum) {
+      inputAdeli.value = adeliNum;
+      console.log('✅ ADELI:', adeliNum);
+    }
+  } else if (typeNumero === 'siret') {
+    radioSiret.checked = true;
+    questionSiret.classList.remove('hidden');
+    suiteFomulaire.classList.remove('hidden');
+    inputSiret.setAttribute('required', 'required');
+    const siretNum = getVal('Numéro SIRET', 'numerosiret');
+    if (siretNum) {
+      inputSiret.value = siretNum;
+      console.log('✅ SIRET:', siretNum);
+    }
+  } else if (typeNumero === 'non') {
+    radioNon.checked = true;
+    messageStop.classList.remove('hidden');
+  }
+
+  // Publics
+  const publics = getVal('Publics', 'publics');
+  if (publics) {
+    const publicsList = publics.split(', ');
+    console.log('👥 Publics:', publicsList);
+    document.querySelectorAll('input[name="Publics"]').forEach(cb => {
+      if (publicsList.includes(cb.value)) {
+        cb.checked = true;
+        console.log('  ✓', cb.value);
+      }
+    });
+  }
+
+  // Modes
+  const modes = getVal('Modes Intervention', 'modesintervention');
+  if (modes) {
+    const modesList = modes.split(', ');
+    console.log('🏠 Modes:', modesList);
+    document.querySelectorAll('input[name="Modes Intervention"]').forEach(cb => {
+      if (modesList.includes(cb.value)) {
+        cb.checked = true;
+        console.log('  ✓', cb.value);
+      }
+    });
+  }
+
+  // Visio
+  const visio = getVal('Visio', 'visio');
+  if (visio) {
+    console.log('📹 Visio:', visio);
+    document.querySelectorAll('input[name="Visio"]').forEach(radio => {
+      if (radio.value === visio) {
+        radio.checked = true;
+        console.log('  ✓ Coché');
+      }
+    });
+  }
+
+  // Département
+  const departement = getVal('Département', 'departement');
+  if (departement) {
+    selectDepartement.value = departement;
+    console.log('🗺️ Département:', departement);
+    
+    // Charger communes
+    const commune = getVal('Commune', 'commune');
+    if (commune) {
+      const numDept = departement.split(' ')[0];
+      communeInput.placeholder = '⏳ Chargement...';
+      communeInput.disabled = true;
+
+      try {
+        const resp = await fetch(`${API_GEO_GOUV}/${numDept}/communes`);
+        if (resp.ok) {
+          const communes = await resp.json();
+          communes.sort((a, b) => a.nom.localeCompare(b.nom));
+          toutesLesCommunesDept = communes;
+          communeInput.value = commune;
+          communeInput.disabled = false;
+          communeInput.placeholder = 'Commencez à taper...';
+          console.log('✅ Commune:', commune);
+        }
+      } catch (e) {
+        console.error('❌ Erreur communes:', e);
+        communeInput.disabled = false;
+      }
+    }
+  }
+
+  // Rayon
+  const rayon = getVal('Rayon', 'rayon');
+  if (rayon) {
+    document.getElementById('rayon').value = rayon;
+    console.log('📍 Rayon:', rayon);
+  }
+
+  // Disponibilité
+  const aDispo = getVal('A Disponibilité', 'adisponibilite');
+  if (aDispo) {
+    console.log('📅 A Disponibilité:', aDispo);
+    if (aDispo === 'Oui') {
+      radioDispoOui.checked = true;
+      questionDateDispo.classList.remove('hidden');
+      dateDisponibilite.setAttribute('required', 'required');
+      
+      const dateDispo = getVal('Date Disponibilité', 'datedisponibilite');
+      if (dateDispo) {
+        console.log('  📆 Date brute:', dateDispo);
+        if (dateDispo.includes('/')) {
+          const [j, m, a] = dateDispo.split('/');
+          const dateISO = `${a}-${m.padStart(2,'0')}-${j.padStart(2,'0')}`;
+          dateDisponibilite.value = dateISO;
+          console.log('  ✅ Date convertie:', dateISO);
+        } else {
+          dateDisponibilite.value = dateDispo;
+          console.log('  ✅ Date directe:', dateDispo);
+        }
+      }
+    } else {
+      radioDispoNon.checked = true;
+      console.log('  ✓ NON coché');
+    }
+  }
+
+  // Consentement
+  document.getElementById('consentement').checked = true;
+  console.log('✅ Consentement coché');
+  
+  console.log('🎉 Pré-remplissage terminé');
+}document.getElementById('telephone').value = userData['Téléphone'];
     console.log('✅ Téléphone:', userData['Téléphone']);
   }
   if (userData['Profession']) {
@@ -856,8 +1013,7 @@ formulaire.addEventListener('submit', async function(e){
     return;
   }
 
-  // Préparation données
-  const formData = new FormData(this);
+  // ===== NOUVELLE MÉTHODE DE COLLECTE =====
   const now = new Date();
   const frenchTime = new Intl.DateTimeFormat('fr-FR', {
     timeZone: 'Europe/Paris',
@@ -869,19 +1025,68 @@ formulaire.addEventListener('submit', async function(e){
     second: '2-digit'
   }).format(now);
   
-  const data = { Horodateur: frenchTime };
-  
-  for(let [key, value] of formData.entries()){
-    if(data[key]){ 
-      if(Array.isArray(data[key])) data[key].push(value); 
-      else data[key] = [data[key], value]; 
-    } else data[key] = value;
+  // Construire l'objet avec les NOMS EXACTS des colonnes
+  const data = {
+    'Horodateur': frenchTime,
+    'Email': document.getElementById('email').value,
+    'Nom': document.getElementById('nom').value,
+    'Prénom': document.getElementById('prenom').value,
+    'Téléphone': document.getElementById('telephone').value,
+    'Profession': document.getElementById('profession').value,
+    'Type Numéro': '',
+    'Numéro ADELI': '',
+    'Numéro SIRET': '',
+    'Publics': '',
+    'Modes Intervention': '',
+    'Visio': '',
+    'Département': document.getElementById('departement').value,
+    'Commune': document.getElementById('communeInput').value,
+    'Rayon': document.getElementById('rayon').value,
+    'A Disponibilité': '',
+    'Date Disponibilité': '',
+    'Consentement': document.getElementById('consentement').checked ? "J'accepte" : '',
+    'Statut Email': '',
+    'codeVerifie': 'oui'
+  };
+
+  // Type Numéro
+  if (radioAdeli.checked) {
+    data['Type Numéro'] = 'adeli';
+    data['Numéro ADELI'] = inputAdeli.value;
+  } else if (radioSiret.checked) {
+    data['Type Numéro'] = 'siret';
+    data['Numéro SIRET'] = inputSiret.value;
+  } else if (radioNon.checked) {
+    data['Type Numéro'] = 'non';
   }
 
-  // Formatage
-  if(Array.isArray(data.Publics)) data.Publics = data.Publics.join(', ');
-  if(Array.isArray(data['Modes Intervention'])) data['Modes Intervention'] = data['Modes Intervention'].join(', ');
-  data.Consentement = data.Consentement === 'on' ? "J'accepte" : '';
+  // Publics
+  const publicsChecked = [];
+  document.querySelectorAll('input[name="Publics"]:checked').forEach(cb => {
+    publicsChecked.push(cb.value);
+  });
+  data['Publics'] = publicsChecked.join(', ');
+
+  // Modes Intervention
+  const modesChecked = [];
+  document.querySelectorAll('input[name="Modes Intervention"]:checked').forEach(cb => {
+    modesChecked.push(cb.value);
+  });
+  data['Modes Intervention'] = modesChecked.join(', ');
+
+  // Visio
+  const visioChecked = document.querySelector('input[name="Visio"]:checked');
+  if (visioChecked) {
+    data['Visio'] = visioChecked.value;
+  }
+
+  // Disponibilité
+  if (radioDispoOui.checked) {
+    data['A Disponibilité'] = 'Oui';
+    data['Date Disponibilité'] = dateDisponibilite.value;
+  } else if (radioDispoNon.checked) {
+    data['A Disponibilité'] = 'Non';
+  }
 
   // Statut Email
   if (estNouvelEmail) {
@@ -889,8 +1094,6 @@ formulaire.addEventListener('submit', async function(e){
   } else if (emailEnModification) {
     data['Statut Email'] = 'Modification - Email existant vérifié';
   }
-
-  data.codeVerifie = "oui";
 
   console.log('📤 Données à envoyer:', data);
 
