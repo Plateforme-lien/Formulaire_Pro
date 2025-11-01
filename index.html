@@ -149,7 +149,7 @@ button:disabled { background: #95a5a6; cursor: not-allowed; }
   </div>
 
   <!-- ÉTAPE 3 : FORMULAIRE -->
-  <form id="formulaire" class="hidden">
+  <form id="formulaire" class="hidden" novalidate>
     
     <div id="alertExistant" class="alert-box alert-info hidden">
       <h3>📝 Modification de vos informations</h3>
@@ -334,7 +334,7 @@ button:disabled { background: #95a5a6; cursor: not-allowed; }
 // ============================================
 // CONFIGURATION
 // ============================================
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwom8SGhiURX5a7tGwZqqZ-3sJVmsvqI4rleLLzyu2jpskMhJr6lkSeNVbuRDtVTgjHIw/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzbaEis0cqzKjoHIRaXZ6fcB188xhx1yB3YTLafBNO_MBZG_hhAqSui_bBvdi-lGr-F/exec';
 const API_COMMUNES = 'https://geo.api.gouv.fr/departements';
 const MODE_LOCAL = location.protocol === 'file:';
 
@@ -394,7 +394,10 @@ inputEmail.addEventListener('keypress', e => {
   }
 });
 
-btnVerifierEmail.addEventListener('click', async () => {
+btnVerifierEmail.addEventListener('click', async (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  
   const email = inputEmail.value.trim().toLowerCase();
   
   if (!email || !email.includes('@')) {
@@ -481,7 +484,10 @@ inputCode.addEventListener('input', () => {
   inputCode.value = inputCode.value.replace(/\D/g, '');
 });
 
-btnVerifierCode.addEventListener('click', () => {
+btnVerifierCode.addEventListener('click', (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  
   const code = inputCode.value.trim();
   
   if (code.length !== 6) {
