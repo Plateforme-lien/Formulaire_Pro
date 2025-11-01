@@ -125,18 +125,18 @@ button:disabled { background: #95a5a6; cursor: not-allowed; }
   <h1>📋 Inscription Professionnels</h1>
   <p class="subtitle">Formulaire d'inscription pour les professionnels de santé</p>
 
-  <!-- ÉTAPE 1 : EMAIL -->
+  <!-- ÉTAPE 1 : EMAIL (HORS FORMULAIRE) -->
   <div id="etapeEmail">
     <div class="question">
       <label>Adresse e-mail <span class="required">*</span></label>
-      <input type="email" id="inputEmail" required placeholder="votre.email@exemple.com">
+      <input type="email" id="inputEmail" placeholder="votre.email@exemple.com">
       <div class="error-msg" id="errorEmail">Veuillez entrer une adresse e-mail valide</div>
     </div>
     <button type="button" id="btnVerifierEmail" class="btn-secondary">Vérifier mon e-mail</button>
     <div id="statusEmail" style="margin-top:15px; font-size:14px; color:#666;"></div>
   </div>
 
-  <!-- ÉTAPE 2 : CODE VÉRIFICATION -->
+  <!-- ÉTAPE 2 : CODE VÉRIFICATION (HORS FORMULAIRE) -->
   <div id="etapeCode" class="hidden">
     <div class="code-box">
       <h3>🔐 Vérification de sécurité</h3>
