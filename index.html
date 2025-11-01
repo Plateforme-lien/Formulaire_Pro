@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Inscription Professionnels - Plateforme</title>
-<link rel="icon" href="data:," />
+<title>Formulaire d'inscription</title>
 <style>
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -198,199 +197,231 @@ input[type="date"] {
   </div>
 
   <form id="formulaire">
+    <!-- Email -->
     <div class="question">
       <label>Adresse e-mail <span class="required">*</span></label>
-      <input type="email" id="email" required>
+      <input type="email" name="Email" id="email" required>
       <div class="error" id="errorEmail">Veuillez entrer une adresse e-mail valide</div>
     </div>
     <button type="button" id="btnVerifierEmail" style="margin-top:10px; background:#17a2b8;">Vérifier mon e-mail</button>
     <p id="emailStatus" style="margin-top:8px; font-style:italic; color:#555;"></p>
 
+    <!-- Bloc caché au départ -->
     <div id="blocQuestions" class="hidden">
+
+    <!-- Nom -->
+    <div class="question">
+      <label>Nom <span class="required">*</span></label>
+      <input type="text" name="Nom" id="nom" required>
+    </div>
+
+    <!-- Prénom -->
+    <div class="question">
+      <label>Prénom <span class="required">*</span></label>
+      <input type="text" name="Prénom" id="prenom" required>
+    </div>
+
+    <!-- Téléphone -->
+    <div class="question">
+      <label>Votre n° de téléphone professionnel (optionnel)</label>
+      <input type="tel" name="Téléphone" id="telephone" placeholder="Ex: 0601020304">
+      <div class="error" id="errorTelephone">Veuillez entrer un numéro de téléphone valide (10 chiffres)</div>
+    </div>
+
+    <!-- Profession -->
+    <div class="question">
+      <label>Sélectionner votre profession <span class="required">*</span></label>
+      <select name="Profession" id="profession" required>
+        <option value="">-- Choisir une profession --</option>
+        <option value="Éducateur spécialisé">Éducateur spécialisé</option>
+        <option value="Ergothérapeute">Ergothérapeute</option>
+        <option value="Psychologue">Psychologue</option>
+        <option value="Psychomotricien">Psychomotricien</option>
+        <option value="Orthophoniste">Orthophoniste</option>
+      </select>
+    </div>
+
+    <!-- Numéro professionnel -->
+    <div class="question">
+      <label>Avez-vous un numéro professionnel ? <span class="required">*</span></label>
+      <div class="radio-group">
+        <label><input type="radio" name="Type Numéro" value="adeli" id="radioAdeli"> Oui, j'ai un numéro ADELI</label>
+        <label><input type="radio" name="Type Numéro" value="siret" id="radioSiret"> Oui, j'ai un numéro SIRET</label>
+        <label><input type="radio" name="Type Numéro" value="non" id="radioNon" required> Non, je n'ai pas de numéro</label>
+      </div>
+    </div>
+
+    <!-- ADELI -->
+    <div class="question hidden" id="questionAdeli">
+      <label>Veuillez indiquer votre numéro ADELI <span class="required">*</span></label>
+      <input type="text" name="Numéro ADELI" id="numeroAdeli" maxlength="9" placeholder="9 chiffres">
+      <div class="error" id="errorAdeli">Le numéro ADELI doit contenir exactement 9 chiffres</div>
+    </div>
+
+    <!-- SIRET -->
+    <div class="question hidden" id="questionSiret">
+      <label>Veuillez indiquer votre numéro SIRET <span class="required">*</span></label>
+      <input type="text" name="Numéro SIRET" id="numeroSiret" maxlength="14" placeholder="14 chiffres">
+      <div class="error" id="errorSiret">Le numéro SIRET doit contenir exactement 14 chiffres</div>
+    </div>
+
+    <!-- Section suivante -->
+    <div id="suiteFomulaire" class="hidden">
+
+      <!-- Public -->
       <div class="question">
-        <label>Nom <span class="required">*</span></label>
-        <input type="text" id="nom" required>
+        <label>Auprès de quel(s) public(s) intervenez-vous ? <span class="required">*</span></label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="Publics" value="Enfants (0-6 ans)"> Enfants (0-6 ans)</label>
+          <label><input type="checkbox" name="Publics" value="Enfants (7-12 ans)"> Enfants (7-12 ans)</label>
+          <label><input type="checkbox" name="Publics" value="Adolescents (12-18 ans)"> Adolescents (12-18 ans)</label>
+          <label><input type="checkbox" name="Publics" value="Adultes (au-delà de 18 ans)"> Adultes (au-delà de 18 ans)</label>
+        </div>
+        <div class="error" id="errorPublics">Veuillez sélectionner au moins un public</div>
       </div>
 
+      <!-- Modes -->
       <div class="question">
-        <label>Prénom <span class="required">*</span></label>
-        <input type="text" id="prenom" required>
+        <label>Quels sont vos modes d'intervention ? <span class="required">*</span></label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="Modes Intervention" value="À domicile"> À domicile</label>
+          <label><input type="checkbox" name="Modes Intervention" value="En cabinet"> En cabinet</label>
+        </div>
+        <div class="error" id="errorModes">Veuillez sélectionner au moins un mode d'intervention</div>
       </div>
 
+      <!-- Visio -->
       <div class="question">
-        <label>Votre n° de téléphone professionnel (optionnel)</label>
-        <input type="tel" id="telephone" placeholder="Ex: 0601020304">
-        <div class="error" id="errorTelephone">Veuillez entrer un numéro de téléphone valide (10 chiffres)</div>
+        <label>Proposez-vous des rendez-vous en visio ? <span class="required">*</span></label>
+        <div class="radio-group">
+          <label><input type="radio" name="Visio" value="Oui" required> Oui</label>
+          <label><input type="radio" name="Visio" value="Non"> Non</label>
+        </div>
       </div>
 
+      <!-- Département -->
       <div class="question">
-        <label>Sélectionner votre profession <span class="required">*</span></label>
-        <select id="profession" required>
-          <option value="">-- Choisir une profession --</option>
-          <option value="Éducateur spécialisé">Éducateur spécialisé</option>
-          <option value="Ergothérapeute">Ergothérapeute</option>
-          <option value="Psychologue">Psychologue</option>
-          <option value="Psychomotricien">Psychomotricien</option>
-          <option value="Orthophoniste">Orthophoniste</option>
+        <label>Dans quel département intervenez-vous principalement ? <span class="required">*</span></label>
+        <select name="Département" id="departement" required>
+          <option value="">-- Choisir un département --</option>
+          <option value="54 - Meurthe-et-Moselle">54 - Meurthe-et-Moselle</option>
+          <option value="55 - Meuse">55 - Meuse</option>
+          <option value="57 - Moselle">57 - Moselle</option>
+          <option value="88 - Vosges">88 - Vosges</option>
         </select>
       </div>
 
+      <!-- Commune -->
+      <div class="question" style="position: relative;">
+        <label>Quelle est votre commune principale d'intervention ? <span class="required">*</span></label>
+        <input type="text" name="Commune" id="communeInput" placeholder="Commencez à taper votre commune..." autocomplete="off" required>
+        <div id="autocompleteList" class="autocomplete-items"></div>
+      </div>
+
+      <!-- Rayon -->
       <div class="question">
-        <label>Avez-vous un numéro professionnel ? <span class="required">*</span></label>
+        <label>Quel est votre rayon d'intervention ? <span class="required">*</span></label>
+        <select name="Rayon" id="rayon" required>
+          <option value="">-- Choisir un rayon --</option>
+          <option value="Aucun - en cabinet">Aucun - en cabinet</option>
+          <option value="10 km">10 km</option>
+          <option value="15 km">15 km</option>
+          <option value="20 km">20 km</option>
+          <option value="25 km">25 km</option>
+          <option value="30 km">30 km</option>
+          <option value="40 km">40 km</option>
+          <option value="50 km">50 km</option>
+          <option value="Tout mon département">Tout mon département</option>
+        </select>
+      </div>
+
+      <!-- NOUVELLE QUESTION DISPONIBILITÉ -->
+      <div class="question">
+        <label>Avez-vous une ou des disponibilités à venir pour de nouveaux bénéficiaires ? <span class="required">*</span></label>
         <div class="radio-group">
-          <label><input type="radio" name="typeNumero" value="adeli" id="radioAdeli"> Oui, j'ai un numéro ADELI</label>
-          <label><input type="radio" name="typeNumero" value="siret" id="radioSiret"> Oui, j'ai un numéro SIRET</label>
-          <label><input type="radio" name="typeNumero" value="non" id="radioNon" required> Non, je n'ai pas de numéro</label>
+          <label><input type="radio" name="A Disponibilité" value="Oui" id="radioDispoOui" required> Oui</label>
+          <label><input type="radio" name="A Disponibilité" value="Non" id="radioDispoNon"> Non</label>
         </div>
       </div>
 
-      <div class="question hidden" id="questionAdeli">
-        <label>Veuillez indiquer votre numéro ADELI <span class="required">*</span></label>
-        <input type="text" id="numeroAdeli" maxlength="9" placeholder="9 chiffres">
-        <div class="error" id="errorAdeli">Le numéro ADELI doit contenir exactement 9 chiffres</div>
+      <!-- CALENDRIER (visible seulement si Oui) -->
+      <div class="question hidden" id="questionDateDispo">
+        <div class="date-picker-box">
+          <label>À partir de quand avez-vous une disponibilité ? <span class="required">*</span></label>
+          <input type="date" name="Date Disponibilité" id="dateDisponibilite">
+          <div class="error" id="errorDate">Veuillez sélectionner une date</div>
+        </div>
       </div>
 
-      <div class="question hidden" id="questionSiret">
-        <label>Veuillez indiquer votre numéro SIRET <span class="required">*</span></label>
-        <input type="text" id="numeroSiret" maxlength="14" placeholder="14 chiffres">
-        <div class="error" id="errorSiret">Le numéro SIRET doit contenir exactement 14 chiffres</div>
+      <!-- Consentement -->
+      <div class="question">
+        <label class="consent-label">
+          <input type="checkbox" name="Consentement" id="consentement" required>
+          <span>J'accepte que mes données soient utilisées uniquement dans le cadre de cette mise en relation <span class="required">*</span></span>
+        </label>
       </div>
 
-      <div id="suiteFomulaire" class="hidden">
-        <div class="question">
-          <label>Auprès de quel(s) public(s) intervenez-vous ? <span class="required">*</span></label>
-          <div class="checkbox-group" id="checkboxPublics">
-            <label><input type="checkbox" value="Enfants (0-6 ans)"> Enfants (0-6 ans)</label>
-            <label><input type="checkbox" value="Enfants (7-12 ans)"> Enfants (7-12 ans)</label>
-            <label><input type="checkbox" value="Adolescents (12-18 ans)"> Adolescents (12-18 ans)</label>
-            <label><input type="checkbox" value="Adultes (au-delà de 18 ans)"> Adultes (au-delà de 18 ans)</label>
-          </div>
-          <div class="error" id="errorPublics">Veuillez sélectionner au moins un public</div>
-        </div>
-
-        <div class="question">
-          <label>Quels sont vos modes d'intervention ? <span class="required">*</span></label>
-          <div class="checkbox-group" id="checkboxModes">
-            <label><input type="checkbox" value="À domicile"> À domicile</label>
-            <label><input type="checkbox" value="En cabinet"> En cabinet</label>
-          </div>
-          <div class="error" id="errorModes">Veuillez sélectionner au moins un mode d'intervention</div>
-        </div>
-
-        <div class="question">
-          <label>Proposez-vous des rendez-vous en visio ? <span class="required">*</span></label>
-          <div class="radio-group">
-            <label><input type="radio" name="visio" value="Oui" required> Oui</label>
-            <label><input type="radio" name="visio" value="Non"> Non</label>
-          </div>
-        </div>
-
-        <div class="question">
-          <label>Dans quel département intervenez-vous principalement ? <span class="required">*</span></label>
-          <select id="departement" required>
-            <option value="">-- Choisir un département --</option>
-            <option value="54 - Meurthe-et-Moselle">54 - Meurthe-et-Moselle</option>
-            <option value="55 - Meuse">55 - Meuse</option>
-            <option value="57 - Moselle">57 - Moselle</option>
-            <option value="88 - Vosges">88 - Vosges</option>
-          </select>
-        </div>
-
-        <div class="question" style="position: relative;">
-          <label>Quelle est votre commune principale d'intervention ? <span class="required">*</span></label>
-          <input type="text" id="communeInput" placeholder="Commencez à taper votre commune..." autocomplete="off" required>
-          <div id="autocompleteList" class="autocomplete-items"></div>
-        </div>
-
-        <div class="question">
-          <label>Quel est votre rayon d'intervention ? <span class="required">*</span></label>
-          <select id="rayon" required>
-            <option value="">-- Choisir un rayon --</option>
-            <option value="Aucun - en cabinet">Aucun - en cabinet</option>
-            <option value="10 km">10 km</option>
-            <option value="15 km">15 km</option>
-            <option value="20 km">20 km</option>
-            <option value="25 km">25 km</option>
-            <option value="30 km">30 km</option>
-            <option value="40 km">40 km</option>
-            <option value="50 km">50 km</option>
-            <option value="Tout mon département">Tout mon département</option>
-          </select>
-        </div>
-
-        <div class="question">
-          <label>Avez-vous une ou des disponibilités à venir pour de nouveaux bénéficiaires ? <span class="required">*</span></label>
-          <div class="radio-group">
-            <label><input type="radio" name="aDisponibilite" value="Oui" id="radioDispoOui" required> Oui</label>
-            <label><input type="radio" name="aDisponibilite" value="Non" id="radioDispoNon"> Non</label>
-          </div>
-        </div>
-
-        <div class="question hidden" id="questionDateDispo">
-          <div class="date-picker-box">
-            <label>À partir de quand avez-vous une disponibilité ? <span class="required">*</span></label>
-            <input type="date" id="dateDisponibilite">
-            <div class="error" id="errorDate">Veuillez sélectionner une date</div>
-          </div>
-        </div>
-
-        <div class="question">
-          <label class="consent-label">
-            <input type="checkbox" id="consentement" required>
-            <span>J'accepte que mes données soient utilisées uniquement dans le cadre de cette mise en relation <span class="required">*</span></span>
-          </label>
-        </div>
-
-        <button type="submit" id="btnSubmit">Envoyer le formulaire</button>
-      </div>
+      <!-- Bouton -->
+      <button type="submit" id="btnSubmit">Envoyer le formulaire</button>
     </div>
+    </div> <!-- fin blocQuestions -->
   </form>
 </div>
 
 <script>
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzbaEis0cqzKjoHIRaXZ6fcB188xhx1yB3YTLafBNO_MBZG_hhAqSui_bBvdi-lGr-F/exec';
+// CONFIGURATION
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwom8SGhiURX5a7tGwZqqZ-3sJVmsvqI4rleLLzyu2jpskMhJr6lkSeNVbuRDtVTgjHIw/exec';
 const API_GEO_GOUV = 'https://geo.api.gouv.fr/departements';
 
+// DÉTECTION ENVIRONNEMENT
+const isLocal = location.protocol === 'file:';
+
+if (isLocal) {
+  console.log('💻 MODE LOCAL - Simulation activée');
+} else {
+  console.log('🌍 MODE PRODUCTION - Requêtes réelles');
+}
+
+// Variables globales
 let codeGenere = null;
 let emailEnModification = null;
 let estNouvelEmail = false;
 let donneesUtilisateur = null;
-let toutesLesCommunesDept = [];
 
-const inputEmail = document.getElementById('email');
-const btnVerifierEmail = document.getElementById('btnVerifierEmail');
-const emailStatus = document.getElementById('emailStatus');
-const blocQuestions = document.getElementById('blocQuestions');
-const messageEmailExiste = document.getElementById('messageEmailExiste');
-const messageEmailNouveau = document.getElementById('messageEmailNouveau');
-const codeVerificationBox = document.getElementById('codeVerificationBox');
-const inputCode = document.getElementById('codeVerification');
-const btnVerifierCode = document.getElementById('btnVerifierCode');
+// Éléments du DOM
 const radioNon = document.getElementById('radioNon');
 const radioAdeli = document.getElementById('radioAdeli');
 const radioSiret = document.getElementById('radioSiret');
 const questionAdeli = document.getElementById('questionAdeli');
 const questionSiret = document.getElementById('questionSiret');
-const inputAdeli = document.getElementById('numeroAdeli');
-const inputSiret = document.getElementById('numeroSiret');
 const suiteFomulaire = document.getElementById('suiteFomulaire');
 const messageStop = document.getElementById('messageStop');
+const messageEmailExiste = document.getElementById('messageEmailExiste');
+const messageEmailNouveau = document.getElementById('messageEmailNouveau');
+const codeVerificationBox = document.getElementById('codeVerificationBox');
+const inputAdeli = document.getElementById('numeroAdeli');
+const inputSiret = document.getElementById('numeroSiret');
 const inputTelephone = document.getElementById('telephone');
 const selectDepartement = document.getElementById('departement');
 const communeInput = document.getElementById('communeInput');
 const autocompleteList = document.getElementById('autocompleteList');
+const inputCode = document.getElementById('codeVerification');
+const btnVerifierCode = document.getElementById('btnVerifierCode');
+const formulaire = document.getElementById('formulaire');
+const btnSubmit = document.getElementById('btnSubmit');
+const successMessage = document.getElementById('successMessage');
 const radioDispoOui = document.getElementById('radioDispoOui');
 const radioDispoNon = document.getElementById('radioDispoNon');
 const questionDateDispo = document.getElementById('questionDateDispo');
 const dateDisponibilite = document.getElementById('dateDisponibilite');
-const formulaire = document.getElementById('formulaire');
-const btnSubmit = document.getElementById('btnSubmit');
-const successMessage = document.getElementById('successMessage');
+let toutesLesCommunesDept = [];
 
+// CONFIGURATION DATE MINIMUM
 const aujourdhui = new Date().toISOString().split('T')[0];
 dateDisponibilite.setAttribute('min', aujourdhui);
 
-document.querySelectorAll('input[name="aDisponibilite"]').forEach(radio => {
+// GESTION DISPONIBILITÉ
+document.querySelectorAll('input[name="A Disponibilité"]').forEach(radio => {
   radio.addEventListener('change', function() {
     if (this.value === 'Oui') {
       questionDateDispo.classList.remove('hidden');
@@ -403,7 +434,8 @@ document.querySelectorAll('input[name="aDisponibilite"]').forEach(radio => {
   });
 });
 
-document.querySelectorAll('input[name="typeNumero"]').forEach(radio => {
+// Gestion radio numéro professionnel
+document.querySelectorAll('input[name="Type Numéro"]').forEach(radio => {
   radio.addEventListener('change', function() {
     questionAdeli.classList.add('hidden');
     questionSiret.classList.add('hidden');
@@ -416,11 +448,11 @@ document.querySelectorAll('input[name="typeNumero"]').forEach(radio => {
 
     if(this.value === 'non') {
       messageStop.classList.remove('hidden');
-    } else if(this.value === 'adeli') { 
+    } else if(this.value === 'adeli'){ 
       questionAdeli.classList.remove('hidden'); 
       inputAdeli.setAttribute('required','required'); 
       suiteFomulaire.classList.remove('hidden'); 
-    } else if(this.value === 'siret') { 
+    } else if(this.value === 'siret'){ 
       questionSiret.classList.remove('hidden'); 
       inputSiret.setAttribute('required','required'); 
       suiteFomulaire.classList.remove('hidden'); 
@@ -428,132 +460,96 @@ document.querySelectorAll('input[name="typeNumero"]').forEach(radio => {
   });
 });
 
-inputAdeli.addEventListener('input', () => inputAdeli.value = inputAdeli.value.replace(/\D/g, ''));
-inputSiret.addEventListener('input', () => inputSiret.value = inputSiret.value.replace(/\D/g, ''));
-inputTelephone.addEventListener('input', () => inputTelephone.value = inputTelephone.value.replace(/\D/g, ''));
-inputCode.addEventListener('input', () => inputCode.value = inputCode.value.replace(/\D/g, ''));
+// Validation numérique
+inputAdeli.addEventListener('input', () => inputAdeli.value = inputAdeli.value.replace(/\D/g,''));
+inputSiret.addEventListener('input', () => inputSiret.value = inputSiret.value.replace(/\D/g,''));
+inputTelephone.addEventListener('input', () => inputTelephone.value = inputTelephone.value.replace(/\D/g,''));
+inputCode.addEventListener('input', () => inputCode.value = inputCode.value.replace(/\D/g,''));
 
-async function preremplirFormulaire(userData) {
-  console.log('🔄 Pré-remplissage:', userData);
+// PRÉ-REMPLISSAGE
+function preremplirFormulaire(userData) {
+  console.log('🔄 DÉBUT PRÉ-REMPLISSAGE', userData);
   
-  if (!userData) return;
-
-  function getVal(key1, key2) {
-    return userData[key1] || userData[key2] || userData[key1.toLowerCase()] || 
-           userData[key1.toLowerCase().replace(/\s+/g, '')] || '';
-  }
-
-  const nom = getVal('Nom', 'nom');
-  const prenom = getVal('Prénom', 'prenom');
-  const telephone = getVal('Téléphone', 'telephone');
-  const profession = getVal('Profession', 'profession');
+  if (userData['Nom']) document.getElementById('nom').value = userData['Nom'];
+  if (userData['Prénom']) document.getElementById('prenom').value = userData['Prénom'];
+  if (userData['Téléphone']) document.getElementById('telephone').value = userData['Téléphone'];
+  if (userData['Profession']) document.getElementById('profession').value = userData['Profession'];
   
-  if (nom) document.getElementById('nom').value = nom;
-  if (prenom) document.getElementById('prenom').value = prenom;
-  if (telephone) document.getElementById('telephone').value = telephone;
-  if (profession) document.getElementById('profession').value = profession;
-
-  const typeNumero = getVal('Type Numéro', 'typenumero');
-  console.log('🔑 Type Numéro:', typeNumero);
-  
+  const typeNumero = userData['Type Numéro'];
   if (typeNumero === 'adeli') {
     radioAdeli.checked = true;
     questionAdeli.classList.remove('hidden');
-    suiteFomulaire.classList.remove('hidden');
     inputAdeli.setAttribute('required', 'required');
-    const adeliNum = getVal('Numéro ADELI', 'numeroadeli');
-    if (adeliNum) inputAdeli.value = adeliNum;
+    if (userData['Numéro ADELI']) inputAdeli.value = userData['Numéro ADELI'];
+    suiteFomulaire.classList.remove('hidden');
   } else if (typeNumero === 'siret') {
     radioSiret.checked = true;
     questionSiret.classList.remove('hidden');
-    suiteFomulaire.classList.remove('hidden');
     inputSiret.setAttribute('required', 'required');
-    const siretNum = getVal('Numéro SIRET', 'numerosiret');
-    if (siretNum) inputSiret.value = siretNum;
-  } else if (typeNumero === 'non') {
-    radioNon.checked = true;
-    messageStop.classList.remove('hidden');
+    if (userData['Numéro SIRET']) inputSiret.value = userData['Numéro SIRET'];
+    suiteFomulaire.classList.remove('hidden');
   }
-
-  const publics = getVal('Publics', 'publics');
-  if (publics) {
-    const publicsList = publics.split(', ');
-    document.querySelectorAll('#checkboxPublics input[type="checkbox"]').forEach(cb => {
-      if (publicsList.includes(cb.value)) cb.checked = true;
+  
+  if (userData['Publics']) {
+    const publics = userData['Publics'].split(', ');
+    document.querySelectorAll('input[name="Publics"]').forEach(checkbox => {
+      if (publics.includes(checkbox.value)) checkbox.checked = true;
     });
   }
-
-  const modes = getVal('Modes Intervention', 'modesintervention');
-  if (modes) {
-    const modesList = modes.split(', ');
-    document.querySelectorAll('#checkboxModes input[type="checkbox"]').forEach(cb => {
-      if (modesList.includes(cb.value)) cb.checked = true;
+  
+  if (userData['Modes Intervention']) {
+    const modes = userData['Modes Intervention'].split(', ');
+    document.querySelectorAll('input[name="Modes Intervention"]').forEach(checkbox => {
+      if (modes.includes(checkbox.value)) checkbox.checked = true;
     });
   }
-
-  const visio = getVal('Visio', 'visio');
-  if (visio) {
-    document.querySelectorAll('input[name="visio"]').forEach(radio => {
-      if (radio.value === visio) radio.checked = true;
+  
+  if (userData['Visio']) {
+    document.querySelectorAll('input[name="Visio"]').forEach(radio => {
+      if (radio.value === userData['Visio']) radio.checked = true;
     });
   }
-
-  const departement = getVal('Département', 'departement');
-  if (departement) {
-    selectDepartement.value = departement;
-    
-    const commune = getVal('Commune', 'commune');
-    if (commune) {
-      const numDept = departement.split(' ')[0];
-      communeInput.placeholder = '⏳ Chargement...';
-      communeInput.disabled = true;
-
-      try {
-        const resp = await fetch(`${API_GEO_GOUV}/${numDept}/communes`);
-        if (resp.ok) {
-          const communes = await resp.json();
-          communes.sort((a, b) => a.nom.localeCompare(b.nom));
-          toutesLesCommunesDept = communes;
-          communeInput.value = commune;
-          communeInput.disabled = false;
-          communeInput.placeholder = 'Commencez à taper...';
-        }
-      } catch (e) {
-        console.error('Erreur communes:', e);
-        communeInput.disabled = false;
-      }
-    }
+  
+  if (userData['Département']) {
+    selectDepartement.value = userData['Département'];
+    selectDepartement.dispatchEvent(new Event('change'));
   }
-
-  const rayon = getVal('Rayon', 'rayon');
-  if (rayon) document.getElementById('rayon').value = rayon;
-
-  const aDispo = getVal('A Disponibilité', 'adisponibilite');
-  if (aDispo) {
-    if (aDispo === 'Oui') {
+  
+  if (userData['Rayon']) document.getElementById('rayon').value = userData['Rayon'];
+  
+  if (userData['A Disponibilité']) {
+    if (userData['A Disponibilité'] === 'Oui') {
       radioDispoOui.checked = true;
       questionDateDispo.classList.remove('hidden');
       dateDisponibilite.setAttribute('required', 'required');
       
-      const dateDispo = getVal('Date Disponibilité', 'datedisponibilite');
-      if (dateDispo) {
-        if (dateDispo.includes('/')) {
-          const [j, m, a] = dateDispo.split('/');
-          dateDisponibilite.value = `${a}-${m.padStart(2,'0')}-${j.padStart(2,'0')}`;
+      if (userData['Date Disponibilité']) {
+        const dateStr = userData['Date Disponibilité'];
+        if (dateStr.includes('/')) {
+          const parts = dateStr.split('/');
+          if (parts.length === 3) {
+            dateDisponibilite.value = `${parts[2]}-${parts[1]}-${parts[0]}`;
+          }
         } else {
-          dateDisponibilite.value = dateDispo;
+          dateDisponibilite.value = dateStr;
         }
       }
     } else {
       radioDispoNon.checked = true;
     }
   }
-
+  
   document.getElementById('consentement').checked = true;
-  console.log('✅ Pré-remplissage terminé');
+  console.log('✅ FIN PRÉ-REMPLISSAGE');
 }
 
-inputEmail.addEventListener('keypress', (e) => {
+// VÉRIFICATION EMAIL
+const inputEmail = document.getElementById('email');
+const blocQuestions = document.getElementById('blocQuestions');
+const btnVerifierEmail = document.getElementById('btnVerifierEmail');
+const emailStatus = document.getElementById('emailStatus');
+
+inputEmail.addEventListener('keypress', function(e) {
   if (e.key === 'Enter') {
     e.preventDefault();
     btnVerifierEmail.click();
@@ -569,66 +565,334 @@ btnVerifierEmail.addEventListener('click', async function() {
   }
 
   btnVerifierEmail.disabled = true;
-  btnVerifierEmail.textContent = "⏳ Vérification...";
-  emailStatus.textContent = "Vérification en cours...";
-  
+  btnVerifierEmail.textContent = "⏳ Vérification en cours...";
+  emailStatus.textContent = "Vérification de l'adresse e-mail...";
   blocQuestions.classList.add('hidden');
   messageEmailExiste.classList.add('hidden');
   messageEmailNouveau.classList.add('hidden');
   codeVerificationBox.classList.add('hidden');
 
   try {
-    const url = `${GOOGLE_SCRIPT_URL}?action=verifierEmail&email=${encodeURIComponent(email)}`;
-    console.log('🌐 Appel:', url);
-    
-    const response = await fetch(url);
-    const result = await response.json();
-    
-    console.log('📦 Réponse:', result);
-
-    codeGenere = result.code;
-    donneesUtilisateur = result.userData || null;
-
-    if (result.existe) {
-      emailEnModification = email;
-      estNouvelEmail = false;
-      messageEmailExiste.classList.remove('hidden');
-      codeVerificationBox.classList.remove('hidden');
-      emailStatus.textContent = "⚠️ Email existant. Code envoyé.";
-      console.log('✅ Données récupérées:', donneesUtilisateur);
-    } else {
-      estNouvelEmail = true;
-      donneesUtilisateur = null;
-      messageEmailNouveau.classList.remove('hidden');
-      codeVerificationBox.classList.remove('hidden');
-      emailStatus.textContent = "✅ Nouvel email. Code envoyé.";
+    if (isLocal) {
+      console.log('🧪 Mode simulation');
+      await new Promise(res => setTimeout(res, 1000));
+      
+      const emailExiste = false;
+      codeGenere = '123456';
+      
+      if (emailExiste) {
+        donneesUtilisateur = {
+          'Nom': 'Dupont',
+          'Prénom': 'Marie',
+          'Téléphone': '0601020304',
+          'Profession': 'Psychologue',
+          'Type Numéro': 'adeli',
+          'Numéro ADELI': '123456789',
+          'Publics': 'Enfants (0-6 ans), Adultes (au-delà de 18 ans)',
+          'Modes Intervention': 'À domicile, En cabinet',
+          'Visio': 'Oui',
+          'Département': '54 - Meurthe-et-Moselle',
+          'Commune': 'Nancy',
+          'Rayon': '20 km',
+          'A Disponibilité': 'Oui',
+          'Date Disponibilité': '01/12/2025'
+        };
+        emailEnModification = email;
+        estNouvelEmail = false;
+        messageEmailExiste.classList.remove('hidden');
+        codeVerificationBox.classList.remove('hidden');
+        emailStatus.textContent = "⚠️ Email déjà enregistré. Un code a été envoyé.";
+      } else {
+        estNouvelEmail = true;
+        donneesUtilisateur = null;
+        messageEmailNouveau.classList.remove('hidden');
+        codeVerificationBox.classList.remove('hidden');
+        emailStatus.textContent = "✅ Nouvel email. Un code a été envoyé.";
+      }
     }
   } catch (error) {
-    console.error('❌ Erreur:', error);
-    emailStatus.textContent = "❌ Erreur de vérification.";
+    console.error('Erreur:', error);
+    emailStatus.textContent = "❌ Erreur lors de la vérification.";
   }
 
   btnVerifierEmail.disabled = false;
   btnVerifierEmail.textContent = "Vérifier mon e-mail";
 });
 
+// CHARGEMENT COMMUNES
 selectDepartement.addEventListener('change', async function() {
   const dept = this.value;
+  const communeActuelle = communeInput.value;
   autocompleteList.innerHTML = '';
   toutesLesCommunesDept = [];
 
   if(!dept) return;
-  
   const numDept = dept.split(' ')[0];
+
   communeInput.placeholder = '⏳ Chargement...';
   communeInput.disabled = true;
 
   try {
-    const resp = await fetch(`${API_GEO_GOUV}/${numDept}/communes`);
-    if (!resp.ok) throw new Error('Erreur API');
-    
-    const communes = await resp.json();
+    const response = await fetch(`${API_GEO_GOUV}/${numDept}/communes`);
+    if (!response.ok) throw new Error(`Erreur API: ${response.status}`);
+    const communes = await response.json();
     communes.sort((a, b) => a.nom.localeCompare(b.nom));
     toutesLesCommunesDept = communes;
+    communeInput.placeholder = 'Commencez à taper...';
+    communeInput.disabled = false;
     
-    communeInput.placeholder
+    if (donneesUtilisateur && donneesUtilisateur['Commune'] && !communeActuelle) {
+      communeInput.value = donneesUtilisateur['Commune'];
+    } else if (communeActuelle) {
+      communeInput.value = communeActuelle;
+    }
+  } catch(e) {
+    console.error('Erreur communes:', e);
+    communeInput.placeholder = 'Erreur, réessayez...';
+    communeInput.disabled = false;
+    alert('Erreur lors du chargement des communes.');
+  }
+});
+
+// AUTOCOMPLETE COMMUNES
+communeInput.addEventListener('input', function() {
+  const val = this.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); 
+  autocompleteList.innerHTML = '';
+  if (!val) return;
+
+  const filtered = toutesLesCommunesDept.filter(c => {
+    const nomSansAccent = c.nom.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    return nomSansAccent.includes(val);
+  });
+
+  filtered.slice(0, 10).forEach(c => {
+    const div = document.createElement('div');
+    div.textContent = c.nom;
+    div.classList.add('autocomplete-item');
+    div.addEventListener('click', () => { 
+      communeInput.value = c.nom; 
+      autocompleteList.innerHTML = ''; 
+    });
+    autocompleteList.appendChild(div);
+  });
+});
+
+document.addEventListener('click', e => { 
+  if(e.target !== communeInput) autocompleteList.innerHTML = ''; 
+});
+
+// VÉRIFICATION CODE
+btnVerifierCode.addEventListener('click', async function() {
+  const codeEntre = inputCode.value.trim();
+  document.getElementById('errorCode').classList.remove('show-error');
+  
+  if(codeEntre.length !== 6) {
+    document.getElementById('errorCode').textContent = 'Le code doit contenir 6 chiffres';
+    document.getElementById('errorCode').classList.add('show-error');
+    return;
+  }
+
+  if(isLocal) {
+    codeGenere = codeEntre;
+  }
+
+  if(codeEntre === codeGenere) {
+    console.log('✅ Code correct');
+    codeVerificationBox.classList.add('hidden');
+    messageEmailExiste.classList.add('hidden');
+    messageEmailNouveau.classList.add('hidden');
+    
+    if (estNouvelEmail) {
+      alert('✅ Email vérifié ! Remplissez le formulaire.');
+      blocQuestions.classList.remove('hidden');
+    } else {
+      alert('✅ Code vérifié ! Vos informations sont pré-remplies.');
+      blocQuestions.classList.remove('hidden');
+      
+      if (donneesUtilisateur) {
+        preremplirFormulaire(donneesUtilisateur);
+      }
+    }
+    
+    inputEmail.readOnly = true;
+    btnVerifierEmail.style.display = 'none';
+  } else {
+    document.getElementById('errorCode').textContent = 'Code incorrect';
+    document.getElementById('errorCode').classList.add('show-error');
+  }
+});
+
+// ENVOI FORMULAIRE
+formulaire.addEventListener('submit', async function(e){
+  e.preventDefault();
+  document.querySelectorAll('.error').forEach(el => el.classList.remove('show-error'));
+
+  let isValid = true;
+
+  if(!document.getElementById('email').validity.valid){
+    document.getElementById('errorEmail').classList.add('show-error');
+    isValid = false;
+  }
+
+  const telephone = inputTelephone.value.trim();
+  if(telephone && telephone.length !== 10){
+    document.getElementById('errorTelephone').classList.add('show-error');
+    isValid = false;
+  }
+
+  if(radioAdeli.checked && inputAdeli.value.length !== 9){
+    document.getElementById('errorAdeli').classList.add('show-error');
+    isValid = false;
+  }
+
+  if(radioSiret.checked && inputSiret.value.length !== 14){
+    document.getElementById('errorSiret').classList.add('show-error');
+    isValid = false;
+  }
+
+  if(!radioNon.checked) {
+    const publicsChecked = document.querySelectorAll('input[name="Publics"]:checked');
+    if(publicsChecked.length === 0){
+      document.getElementById('errorPublics').classList.add('show-error');
+      isValid = false;
+    }
+
+    const modesChecked = document.querySelectorAll('input[name="Modes Intervention"]:checked');
+    if(modesChecked.length === 0){
+      document.getElementById('errorModes').classList.add('show-error');
+      isValid = false;
+    }
+
+    if(radioDispoOui.checked && !dateDisponibilite.value) {
+      document.getElementById('errorDate').classList.add('show-error');
+      isValid = false;
+    }
+
+    if(!selectDepartement.value) isValid = false;
+    if(!communeInput.value.trim()) isValid = false;
+    if(!document.getElementById('rayon').value) isValid = false;
+    if(!document.getElementById('consentement').checked) isValid = false;
+  }
+
+  if(!isValid){
+    alert('Veuillez remplir tous les champs obligatoires.');
+    return;
+  }
+
+  const formData = new FormData(this);
+  const now = new Date();
+  const frenchTime = new Intl.DateTimeFormat('fr-FR', {
+    timeZone: 'Europe/Paris',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+  }).format(now);
+  
+  const data = { Horodateur: frenchTime };
+  
+  for(let [key, value] of formData.entries()){
+    if(data[key]){ 
+      if(Array.isArray(data[key])) data[key].push(value); 
+      else data[key] = [data[key], value]; 
+    } else data[key] = value;
+  }
+
+  if(Array.isArray(data.Publics)) data.Publics = data.Publics.join(', ');
+  if(Array.isArray(data['Modes Intervention'])) data['Modes Intervention'] = data['Modes Intervention'].join(', ');
+  data.Consentement = data.Consentement === 'on' ? "J'accepte" : '';
+
+  if (estNouvelEmail) {
+    data['Statut Email'] = 'Nouvel email vérifié';
+  } else if (emailEnModification) {
+    data['Statut Email'] = 'Modification - Email existant vérifié';
+  }
+
+  data.codeVerifie = "oui";
+
+  await envoyerFormulaire(data);
+});
+
+// FONCTION ENVOI
+async function envoyerFormulaire(data) {
+  btnSubmit.disabled = true; 
+  btnSubmit.textContent = 'Envoi en cours...';
+
+  try {
+    if(isLocal) {
+      console.log('📋 SIMULATION - Données:', data);
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      console.log('✅ Envoi simulé réussi');
+    } else {
+      const res = await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {'Content-Type': 'text/plain'},
+        redirect: 'follow'
+      });
+      
+      const textResponse = await res.text();
+      console.log('📩 Réponse:', textResponse);
+      
+      const response = JSON.parse(textResponse);
+      
+      if(response.result === 'error') {
+        alert(response.message || 'Erreur lors de l\'envoi');
+        btnSubmit.disabled = false;
+        btnSubmit.textContent = 'Envoyer le formulaire';
+        return;
+      }
+      
+      console.log('✅ Envoyé avec succès');
+    }
+
+    formulaire.reset(); 
+    successMessage.style.display = 'block'; 
+    formulaire.style.display = 'none';
+    autocompleteList.innerHTML = ''; 
+    suiteFomulaire.classList.add('hidden');
+    messageEmailExiste.classList.add('hidden');
+    messageEmailNouveau.classList.add('hidden');
+    codeVerificationBox.classList.add('hidden');
+    blocQuestions.classList.add('hidden');
+    emailEnModification = null;
+    estNouvelEmail = false;
+    codeGenere = null;
+    donneesUtilisateur = null;
+    successMessage.scrollIntoView({ behavior: 'smooth' });
+
+  } catch(err){
+    console.error('❌ Erreur:', err);
+    alert('Erreur lors de l\'envoi: ' + err.message);
+  } finally {
+    btnSubmit.disabled = false; 
+    btnSubmit.textContent = 'Envoyer le formulaire';
+  }
+}
+</script>
+</body>
+</html>
+        emailStatus.textContent = "⚠️ Email existant. Code: 123456";
+      } else {
+        estNouvelEmail = true;
+        donneesUtilisateur = null;
+        messageEmailNouveau.classList.remove('hidden');
+        codeVerificationBox.classList.remove('hidden');
+        emailStatus.textContent = "✅ Nouvel email. Code: 123456";
+      }
+    } else {
+      const response = await fetch(GOOGLE_SCRIPT_URL + '?action=verifierEmail&email=' + encodeURIComponent(email));
+      const result = await response.json();
+      
+      console.log('📦 Réponse:', result);
+
+      codeGenere = result.code;
+      donneesUtilisateur = result.userData || null;
+
+      if (result.existe) {
+        emailEnModification = email;
+        estNouvelEmail = false;
+        messageEmailExiste.classList.remove('hidden');
+        codeVerificationBox.classList.remove('hidden');
