@@ -3,96 +3,230 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Inscription Professionnels</title>
+<title>Inscription Professionnels - Plateforme</title>
 <link rel="icon" href="data:," />
 <style>
-body{font-family:'Segoe UI',sans-serif;background:#f0f4f8;padding:20px;margin:0}
-.container{max-width:700px;margin:0 auto;background:white;padding:40px;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.1)}
-h1{color:#2c3e50;margin-bottom:10px;font-size:28px}
-.subtitle{color:#7f8c8d;margin-bottom:30px;font-size:15px}
-.question{margin-bottom:25px}
-label{display:block;font-weight:600;margin-bottom:8px;color:#34495e;font-size:15px}
-.required{color:#e74c3c;font-weight:bold}
-input[type="text"],input[type="email"],input[type="tel"],input[type="date"],select{width:100%;padding:12px;border:2px solid #e0e6ed;border-radius:6px;font-size:15px;box-sizing:border-box}
-input:focus,select:focus{outline:none;border-color:#3498db}
-.checkbox-group label,.radio-group label{display:flex;align-items:center;font-weight:normal;margin-bottom:8px;cursor:pointer}
-input[type="checkbox"],input[type="radio"]{margin-right:8px;cursor:pointer;width:18px;height:18px}
-.hidden{display:none}
-.error{color:#e74c3c;font-size:13px;margin-top:5px;display:none}
-.show-error{display:block}
-.message-box{background:#fff3cd;border:2px solid #ffc107;border-radius:8px;padding:20px;margin:20px 0;color:#856404}
-.info-box{background:#d1ecf1;border:2px solid #17a2b8;border-radius:8px;padding:20px;margin:20px 0;color:#0c5460}
-.success-box{background:#d4edda;border:2px solid #28a745;border-radius:8px;padding:20px;margin:20px 0;color:#155724}
-.message-box h3,.info-box h3,.success-box h3{margin-top:0}
-button{width:100%;padding:14px;background:#3498db;color:white;border:none;border-radius:6px;font-size:16px;font-weight:600;cursor:pointer;margin-top:20px}
-button:hover{background:#2980b9}
-button:disabled{background:#95a5a6;cursor:not-allowed}
-.success-message{background:#d4edda;border:2px solid #28a745;color:#155724;padding:20px;border-radius:8px;text-align:center;display:none}
-.code-verification{background:#e7f3ff;border:2px solid #2196F3;border-radius:8px;padding:25px;margin:20px 0;text-align:center}
-.code-input{width:200px!important;text-align:center;font-size:24px;letter-spacing:10px;font-weight:bold;margin:15px auto}
-.autocomplete-items{position:absolute;border:1px solid #d4d4d4;border-top:none;z-index:99;max-height:150px;overflow-y:auto;background:white;width:100%}
-.autocomplete-item{padding:10px;cursor:pointer}
-.autocomplete-item:hover{background-color:#e9e9e9}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f0f4f8;
+  padding: 20px;
+  margin: 0;
+}
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+h1 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+.subtitle {
+  color: #7f8c8d;
+  margin-bottom: 30px;
+  font-size: 15px;
+}
+.question { margin-bottom: 25px; }
+label { display: block; font-weight: 600; margin-bottom: 8px; color: #34495e; font-size: 15px; }
+.required { color: #e74c3c; font-weight: bold; }
+input[type="text"], input[type="email"], input[type="tel"], input[type="date"], select {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e0e6ed;
+  border-radius: 6px;
+  font-size: 15px;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+}
+input:focus, select:focus { outline: none; border-color: #3498db; }
+.checkbox-group, .radio-group { margin-top: 8px; }
+.checkbox-group label, .radio-group label { display: flex; align-items: center; font-weight: normal; margin-bottom: 8px; cursor: pointer; }
+input[type="checkbox"], input[type="radio"] { margin-right: 8px; cursor: pointer; width: 18px; height: 18px; }
+.hidden { display: none; }
+.error { color: #e74c3c; font-size: 13px; margin-top: 5px; display: none; }
+.show-error { display: block; }
+.message-box {
+  background: #fff3cd;
+  border: 2px solid #ffc107;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  color: #856404;
+}
+.message-box h3 { margin-top: 0; color: #856404; }
+.info-box {
+  background: #d1ecf1;
+  border: 2px solid #17a2b8;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  color: #0c5460;
+}
+.info-box h3 { margin-top: 0; color: #0c5460; }
+.success-box {
+  background: #d4edda;
+  border: 2px solid #28a745;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  color: #155724;
+}
+.success-box h3 { margin-top: 0; color: #155724; }
+button {
+  width: 100%;
+  padding: 14px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: 20px;
+}
+button:hover { background: #2980b9; }
+button:disabled { background: #95a5a6; cursor: not-allowed; }
+.consent-label { display: flex; align-items: flex-start; gap: 8px; }
+.consent-label input { margin-top: 3px; flex-shrink: 0; }
+.success-message {
+  background: #d4edda;
+  border: 2px solid #28a745;
+  color: #155724;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  display: none;
+}
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-top: none;
+  z-index: 99;
+  max-height: 150px;
+  overflow-y: auto;
+  background: white;
+  width: 100%;
+}
+.autocomplete-item {
+  padding: 10px;
+  cursor: pointer;
+}
+.autocomplete-item:hover {
+  background-color: #e9e9e9;
+}
+.code-verification {
+  background: #e7f3ff;
+  border: 2px solid #2196F3;
+  border-radius: 8px;
+  padding: 25px;
+  margin: 20px 0;
+  text-align: center;
+}
+.code-verification h3 {
+  color: #1976D2;
+  margin-top: 0;
+}
+.code-input {
+  width: 200px !important;
+  text-align: center;
+  font-size: 24px;
+  letter-spacing: 10px;
+  font-weight: bold;
+  margin: 15px auto;
+}
+input[readonly] {
+  background-color: #f3f6f9;
+  color: #555;
+}
+.date-picker-box {
+  background: #f8f9fa;
+  border: 2px solid #6c757d;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 15px 0;
+}
+.date-picker-box label {
+  color: #495057;
+  font-size: 14px;
+}
+input[type="date"] {
+  font-size: 16px;
+  padding: 10px;
+}
 </style>
 </head>
 <body>
+
 <div class="container">
-  <h1>Inscription Professionnels</h1>
-  <p class="subtitle">Formulaire d'inscription pour les professionnels.</p>
+  <h1>Inscription Professionnels - Plateforme</h1>
+  <p class="subtitle">Formulaire d'inscription pour les professionnels souhaitant être référencés sur cette plateforme.</p>
 
   <div id="messageStop" class="message-box hidden">
     <h3>⚠️ Accès non autorisé</h3>
-    <p>Formulaire réservé aux professionnels avec numéro ADELI ou SIRET.</p>
+    <p>Ce formulaire est réservé aux professionnels disposant d'un numéro ADELI ou SIRET.</p>
   </div>
 
   <div id="messageEmailExiste" class="info-box hidden">
     <h3>📧 Email déjà enregistré</h3>
-    <p>Un code de vérification a été envoyé à votre adresse email.</p>
+    <p>Cet email est déjà associé à une inscription. Pour modifier vos informations, un code de vérification a été envoyé à votre adresse email.</p>
+    <p><strong>Veuillez vérifier votre boîte mail et entrer le code reçu ci-dessous.</strong></p>
   </div>
 
   <div id="messageEmailNouveau" class="success-box hidden">
-    <h3>✅ Nouvel email</h3>
-    <p>Un code de vérification a été envoyé.</p>
+    <h3>✅ Nouvel email détecté</h3>
+    <p>Pour des raisons de sécurité, un code de vérification a été envoyé à votre adresse email.</p>
+    <p><strong>Veuillez vérifier votre boîte mail et entrer le code reçu ci-dessous.</strong></p>
   </div>
 
   <div id="codeVerificationBox" class="code-verification hidden">
-    <h3>🔐 Vérification</h3>
-    <p>Entrez le code à 6 chiffres</p>
+    <h3>🔐 Vérification de sécurité</h3>
+    <p>Un code à 6 chiffres a été envoyé à votre email</p>
     <input type="text" id="codeVerification" class="code-input" maxlength="6" placeholder="000000">
     <div class="error" id="errorCode">Code incorrect</div>
     <button type="button" id="btnVerifierCode">Vérifier le code</button>
+    <p style="font-size: 13px; color: #666; margin-top: 10px;">Le code est valable 10 minutes</p>
   </div>
 
   <div id="successMessage" class="success-message">
-    <h3>✅ Envoyé !</h3>
+    <h3>✅ Formulaire envoyé avec succès !</h3>
     <p>Merci pour votre inscription.</p>
   </div>
 
   <form id="formulaire">
     <div class="question">
-      <label>Email <span class="required">*</span></label>
+      <label>Adresse e-mail <span class="required">*</span></label>
       <input type="email" id="email" required>
+      <div class="error" id="errorEmail">Veuillez entrer une adresse e-mail valide</div>
     </div>
-    <button type="button" id="btnVerifierEmail" style="background:#17a2b8">Vérifier mon e-mail</button>
-    <p id="emailStatus" style="margin-top:8px;font-style:italic;color:#555"></p>
+    <button type="button" id="btnVerifierEmail" style="margin-top:10px; background:#17a2b8;">Vérifier mon e-mail</button>
+    <p id="emailStatus" style="margin-top:8px; font-style:italic; color:#555;"></p>
 
     <div id="blocQuestions" class="hidden">
       <div class="question">
         <label>Nom <span class="required">*</span></label>
         <input type="text" id="nom" required>
       </div>
+
       <div class="question">
         <label>Prénom <span class="required">*</span></label>
         <input type="text" id="prenom" required>
       </div>
+
       <div class="question">
-        <label>Téléphone (optionnel)</label>
-        <input type="tel" id="telephone" placeholder="0601020304">
+        <label>Votre n° de téléphone professionnel (optionnel)</label>
+        <input type="tel" id="telephone" placeholder="Ex: 0601020304">
+        <div class="error" id="errorTelephone">Veuillez entrer un numéro de téléphone valide (10 chiffres)</div>
       </div>
+
       <div class="question">
-        <label>Profession <span class="required">*</span></label>
+        <label>Sélectionner votre profession <span class="required">*</span></label>
         <select id="profession" required>
-          <option value="">-- Choisir --</option>
+          <option value="">-- Choisir une profession --</option>
           <option value="Éducateur spécialisé">Éducateur spécialisé</option>
           <option value="Ergothérapeute">Ergothérapeute</option>
           <option value="Psychologue">Psychologue</option>
@@ -100,222 +234,401 @@ button:disabled{background:#95a5a6;cursor:not-allowed}
           <option value="Orthophoniste">Orthophoniste</option>
         </select>
       </div>
+
       <div class="question">
         <label>Avez-vous un numéro professionnel ? <span class="required">*</span></label>
         <div class="radio-group">
-          <label><input type="radio" name="typeNumero" value="adeli" id="radioAdeli"> ADELI</label>
-          <label><input type="radio" name="typeNumero" value="siret" id="radioSiret"> SIRET</label>
-          <label><input type="radio" name="typeNumero" value="non" id="radioNon"> Non</label>
+          <label><input type="radio" name="typeNumero" value="adeli" id="radioAdeli"> Oui, j'ai un numéro ADELI</label>
+          <label><input type="radio" name="typeNumero" value="siret" id="radioSiret"> Oui, j'ai un numéro SIRET</label>
+          <label><input type="radio" name="typeNumero" value="non" id="radioNon" required> Non, je n'ai pas de numéro</label>
         </div>
       </div>
+
       <div class="question hidden" id="questionAdeli">
-        <label>Numéro ADELI <span class="required">*</span></label>
+        <label>Veuillez indiquer votre numéro ADELI <span class="required">*</span></label>
         <input type="text" id="numeroAdeli" maxlength="9" placeholder="9 chiffres">
+        <div class="error" id="errorAdeli">Le numéro ADELI doit contenir exactement 9 chiffres</div>
       </div>
+
       <div class="question hidden" id="questionSiret">
-        <label>Numéro SIRET <span class="required">*</span></label>
+        <label>Veuillez indiquer votre numéro SIRET <span class="required">*</span></label>
         <input type="text" id="numeroSiret" maxlength="14" placeholder="14 chiffres">
+        <div class="error" id="errorSiret">Le numéro SIRET doit contenir exactement 14 chiffres</div>
       </div>
-      
+
       <div id="suiteFomulaire" class="hidden">
         <div class="question">
-          <label>Publics <span class="required">*</span></label>
-          <div class="checkbox-group">
+          <label>Auprès de quel(s) public(s) intervenez-vous ? <span class="required">*</span></label>
+          <div class="checkbox-group" id="checkboxPublics">
             <label><input type="checkbox" value="Enfants (0-6 ans)"> Enfants (0-6 ans)</label>
             <label><input type="checkbox" value="Enfants (7-12 ans)"> Enfants (7-12 ans)</label>
             <label><input type="checkbox" value="Adolescents (12-18 ans)"> Adolescents (12-18 ans)</label>
             <label><input type="checkbox" value="Adultes (au-delà de 18 ans)"> Adultes (au-delà de 18 ans)</label>
           </div>
+          <div class="error" id="errorPublics">Veuillez sélectionner au moins un public</div>
         </div>
+
         <div class="question">
-          <label>Modes d'intervention <span class="required">*</span></label>
-          <div class="checkbox-group">
+          <label>Quels sont vos modes d'intervention ? <span class="required">*</span></label>
+          <div class="checkbox-group" id="checkboxModes">
             <label><input type="checkbox" value="À domicile"> À domicile</label>
             <label><input type="checkbox" value="En cabinet"> En cabinet</label>
           </div>
+          <div class="error" id="errorModes">Veuillez sélectionner au moins un mode d'intervention</div>
         </div>
+
         <div class="question">
-          <label>Visio ? <span class="required">*</span></label>
+          <label>Proposez-vous des rendez-vous en visio ? <span class="required">*</span></label>
           <div class="radio-group">
-            <label><input type="radio" name="visio" value="Oui"> Oui</label>
+            <label><input type="radio" name="visio" value="Oui" required> Oui</label>
             <label><input type="radio" name="visio" value="Non"> Non</label>
           </div>
         </div>
+
         <div class="question">
-          <label>Département <span class="required">*</span></label>
+          <label>Dans quel département intervenez-vous principalement ? <span class="required">*</span></label>
           <select id="departement" required>
-            <option value="">-- Choisir --</option>
+            <option value="">-- Choisir un département --</option>
             <option value="54 - Meurthe-et-Moselle">54 - Meurthe-et-Moselle</option>
             <option value="55 - Meuse">55 - Meuse</option>
             <option value="57 - Moselle">57 - Moselle</option>
             <option value="88 - Vosges">88 - Vosges</option>
           </select>
         </div>
-        <div class="question" style="position:relative">
-          <label>Commune <span class="required">*</span></label>
-          <input type="text" id="communeInput" placeholder="Tapez votre commune..." autocomplete="off" required>
+
+        <div class="question" style="position: relative;">
+          <label>Quelle est votre commune principale d'intervention ? <span class="required">*</span></label>
+          <input type="text" id="communeInput" placeholder="Commencez à taper votre commune..." autocomplete="off" required>
           <div id="autocompleteList" class="autocomplete-items"></div>
         </div>
+
         <div class="question">
-          <label>Rayon d'intervention <span class="required">*</span></label>
+          <label>Quel est votre rayon d'intervention ? <span class="required">*</span></label>
           <select id="rayon" required>
-            <option value="">-- Choisir --</option>
+            <option value="">-- Choisir un rayon --</option>
             <option value="Aucun - en cabinet">Aucun - en cabinet</option>
             <option value="10 km">10 km</option>
             <option value="15 km">15 km</option>
             <option value="20 km">20 km</option>
+            <option value="25 km">25 km</option>
             <option value="30 km">30 km</option>
+            <option value="40 km">40 km</option>
+            <option value="50 km">50 km</option>
+            <option value="Tout mon département">Tout mon département</option>
           </select>
         </div>
+
         <div class="question">
-          <label>Disponibilités ? <span class="required">*</span></label>
+          <label>Avez-vous une ou des disponibilités à venir pour de nouveaux bénéficiaires ? <span class="required">*</span></label>
           <div class="radio-group">
-            <label><input type="radio" name="dispo" value="Oui" id="radioDispoOui"> Oui</label>
-            <label><input type="radio" name="dispo" value="Non" id="radioDispoNon"> Non</label>
+            <label><input type="radio" name="aDisponibilite" value="Oui" id="radioDispoOui" required> Oui</label>
+            <label><input type="radio" name="aDisponibilite" value="Non" id="radioDispoNon"> Non</label>
           </div>
         </div>
+
         <div class="question hidden" id="questionDateDispo">
-          <label>À partir de quand ? <span class="required">*</span></label>
-          <input type="date" id="dateDisponibilite">
+          <div class="date-picker-box">
+            <label>À partir de quand avez-vous une disponibilité ? <span class="required">*</span></label>
+            <input type="date" id="dateDisponibilite">
+            <div class="error" id="errorDate">Veuillez sélectionner une date</div>
+          </div>
         </div>
+
         <div class="question">
-          <label style="display:flex;align-items:start;gap:8px">
-            <input type="checkbox" id="consentement" required style="margin-top:3px">
-            <span>J'accepte que mes données soient utilisées <span class="required">*</span></span>
+          <label class="consent-label">
+            <input type="checkbox" id="consentement" required>
+            <span>J'accepte que mes données soient utilisées uniquement dans le cadre de cette mise en relation <span class="required">*</span></span>
           </label>
         </div>
-        <button type="submit" id="btnSubmit">Envoyer</button>
+
+        <button type="submit" id="btnSubmit">Envoyer le formulaire</button>
       </div>
     </div>
   </form>
 </div>
 
 <script>
-const GOOGLE_SCRIPT_URL='https://script.google.com/macros/s/AKfycbzbaEis0cqzKjoHIRaXZ6fcB188xhx1yB3YTLafBNO_MBZG_hhAqSui_bBvdi-lGr-F/exec';
-const API_GEO='https://geo.api.gouv.fr/departements';
-let codeGenere=null,emailEnModification=null,estNouvelEmail=false,donneesUtilisateur=null,communes=[];
-const elems={
-  email:document.getElementById('email'),
-  btnVerifEmail:document.getElementById('btnVerifierEmail'),
-  emailStatus:document.getElementById('emailStatus'),
-  blocQ:document.getElementById('blocQuestions'),
-  msgExiste:document.getElementById('messageEmailExiste'),
-  msgNouveau:document.getElementById('messageEmailNouveau'),
-  codeBox:document.getElementById('codeVerificationBox'),
-  inputCode:document.getElementById('codeVerification'),
-  btnVerifCode:document.getElementById('btnVerifierCode'),
-  radioNon:document.getElementById('radioNon'),
-  radioAdeli:document.getElementById('radioAdeli'),
-  radioSiret:document.getElementById('radioSiret'),
-  qAdeli:document.getElementById('questionAdeli'),
-  qSiret:document.getElementById('questionSiret'),
-  inputAdeli:document.getElementById('numeroAdeli'),
-  inputSiret:document.getElementById('numeroSiret'),
-  suite:document.getElementById('suiteFomulaire'),
-  msgStop:document.getElementById('messageStop'),
-  tel:document.getElementById('telephone'),
-  dept:document.getElementById('departement'),
-  commune:document.getElementById('communeInput'),
-  autoList:document.getElementById('autocompleteList'),
-  dispoOui:document.getElementById('radioDispoOui'),
-  dispoNon:document.getElementById('radioDispoNon'),
-  qDate:document.getElementById('questionDateDispo'),
-  dateD:document.getElementById('dateDisponibilite'),
-  form:document.getElementById('formulaire'),
-  btnSubmit:document.getElementById('btnSubmit'),
-  success:document.getElementById('successMessage')
-};
-elems.dateD.setAttribute('min',new Date().toISOString().split('T')[0]);
-document.querySelectorAll('input[name="dispo"]').forEach(r=>r.addEventListener('change',function(){
-  if(this.value==='Oui'){elems.qDate.classList.remove('hidden');elems.dateD.required=true}
-  else{elems.qDate.classList.add('hidden');elems.dateD.required=false;elems.dateD.value=''}
-}));
-document.querySelectorAll('input[name="typeNumero"]').forEach(r=>r.addEventListener('change',function(){
-  elems.qAdeli.classList.add('hidden');elems.qSiret.classList.add('hidden');elems.suite.classList.add('hidden');elems.msgStop.classList.add('hidden');
-  elems.inputAdeli.value='';elems.inputSiret.value='';elems.inputAdeli.required=false;elems.inputSiret.required=false;
-  if(this.value==='non')elems.msgStop.classList.remove('hidden');
-  else if(this.value==='adeli'){elems.qAdeli.classList.remove('hidden');elems.inputAdeli.required=true;elems.suite.classList.remove('hidden')}
-  else if(this.value==='siret'){elems.qSiret.classList.remove('hidden');elems.inputSiret.required=true;elems.suite.classList.remove('hidden')}
-}));
-elems.inputAdeli.addEventListener('input',()=>elems.inputAdeli.value=elems.inputAdeli.value.replace(/\D/g,''));
-elems.inputSiret.addEventListener('input',()=>elems.inputSiret.value=elems.inputSiret.value.replace(/\D/g,''));
-elems.tel.addEventListener('input',()=>elems.tel.value=elems.tel.value.replace(/\D/g,''));
-elems.inputCode.addEventListener('input',()=>elems.inputCode.value=elems.inputCode.value.replace(/\D/g,''));
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzbaEis0cqzKjoHIRaXZ6fcB188xhx1yB3YTLafBNO_MBZG_hhAqSui_bBvdi-lGr-F/exec';
+const API_GEO_GOUV = 'https://geo.api.gouv.fr/departements';
 
-elems.btnVerifEmail.addEventListener('click',async function(){
-  const email=elems.email.value.trim();
-  if(!email||!email.includes('@')){alert('Email invalide');return}
-  elems.btnVerifEmail.disabled=true;elems.btnVerifEmail.textContent='⏳ Vérification...';
-  elems.blocQ.classList.add('hidden');elems.msgExiste.classList.add('hidden');elems.msgNouveau.classList.add('hidden');elems.codeBox.classList.add('hidden');
-  try{
-    const url=`${GOOGLE_SCRIPT_URL}?action=verifierEmail&email=${encodeURIComponent(email)}`;
-    const resp=await fetch(url);
-    const result=await resp.json();
-    console.log('📦 Réponse:',result);
-    codeGenere=result.code;donneesUtilisateur=result.userData||null;
-    if(result.existe){emailEnModification=email;estNouvelEmail=false;elems.msgExiste.classList.remove('hidden');elems.codeBox.classList.remove('hidden');elems.emailStatus.textContent='⚠️ Email existant'}
-    else{estNouvelEmail=true;elems.msgNouveau.classList.remove('hidden');elems.codeBox.classList.remove('hidden');elems.emailStatus.textContent='✅ Nouvel email'}
-  }catch(e){console.error(e);elems.emailStatus.textContent='❌ Erreur'}
-  elems.btnVerifEmail.disabled=false;elems.btnVerifEmail.textContent='Vérifier';
+let codeGenere = null;
+let emailEnModification = null;
+let estNouvelEmail = false;
+let donneesUtilisateur = null;
+let toutesLesCommunesDept = [];
+
+const inputEmail = document.getElementById('email');
+const btnVerifierEmail = document.getElementById('btnVerifierEmail');
+const emailStatus = document.getElementById('emailStatus');
+const blocQuestions = document.getElementById('blocQuestions');
+const messageEmailExiste = document.getElementById('messageEmailExiste');
+const messageEmailNouveau = document.getElementById('messageEmailNouveau');
+const codeVerificationBox = document.getElementById('codeVerificationBox');
+const inputCode = document.getElementById('codeVerification');
+const btnVerifierCode = document.getElementById('btnVerifierCode');
+const radioNon = document.getElementById('radioNon');
+const radioAdeli = document.getElementById('radioAdeli');
+const radioSiret = document.getElementById('radioSiret');
+const questionAdeli = document.getElementById('questionAdeli');
+const questionSiret = document.getElementById('questionSiret');
+const inputAdeli = document.getElementById('numeroAdeli');
+const inputSiret = document.getElementById('numeroSiret');
+const suiteFomulaire = document.getElementById('suiteFomulaire');
+const messageStop = document.getElementById('messageStop');
+const inputTelephone = document.getElementById('telephone');
+const selectDepartement = document.getElementById('departement');
+const communeInput = document.getElementById('communeInput');
+const autocompleteList = document.getElementById('autocompleteList');
+const radioDispoOui = document.getElementById('radioDispoOui');
+const radioDispoNon = document.getElementById('radioDispoNon');
+const questionDateDispo = document.getElementById('questionDateDispo');
+const dateDisponibilite = document.getElementById('dateDisponibilite');
+const formulaire = document.getElementById('formulaire');
+const btnSubmit = document.getElementById('btnSubmit');
+const successMessage = document.getElementById('successMessage');
+
+const aujourdhui = new Date().toISOString().split('T')[0];
+dateDisponibilite.setAttribute('min', aujourdhui);
+
+document.querySelectorAll('input[name="aDisponibilite"]').forEach(radio => {
+  radio.addEventListener('change', function() {
+    if (this.value === 'Oui') {
+      questionDateDispo.classList.remove('hidden');
+      dateDisponibilite.setAttribute('required', 'required');
+    } else {
+      questionDateDispo.classList.add('hidden');
+      dateDisponibilite.removeAttribute('required');
+      dateDisponibilite.value = '';
+    }
+  });
 });
 
-elems.btnVerifCode.addEventListener('click',function(){
-  const code=elems.inputCode.value.trim();
-  if(code.length!==6||code!==codeGenere){document.getElementById('errorCode').classList.add('show-error');return}
-  elems.codeBox.classList.add('hidden');elems.msgExiste.classList.add('hidden');elems.msgNouveau.classList.add('hidden');
-  elems.blocQ.classList.remove('hidden');
-  if(estNouvelEmail)alert('✅ Email vérifié');
-  else{alert('✅ Pré-remplissage...');if(donneesUtilisateur)preremplir(donneesUtilisateur)}
-  elems.email.readOnly=true;elems.btnVerifEmail.style.display='none';
+document.querySelectorAll('input[name="typeNumero"]').forEach(radio => {
+  radio.addEventListener('change', function() {
+    questionAdeli.classList.add('hidden');
+    questionSiret.classList.add('hidden');
+    suiteFomulaire.classList.add('hidden');
+    messageStop.classList.add('hidden');
+    inputAdeli.value = '';
+    inputSiret.value = '';
+    inputAdeli.removeAttribute('required');
+    inputSiret.removeAttribute('required');
+
+    if(this.value === 'non') {
+      messageStop.classList.remove('hidden');
+    } else if(this.value === 'adeli') { 
+      questionAdeli.classList.remove('hidden'); 
+      inputAdeli.setAttribute('required','required'); 
+      suiteFomulaire.classList.remove('hidden'); 
+    } else if(this.value === 'siret') { 
+      questionSiret.classList.remove('hidden'); 
+      inputSiret.setAttribute('required','required'); 
+      suiteFomulaire.classList.remove('hidden'); 
+    }
+  });
 });
 
-function preremplir(d){
-  console.log('🔄 Pré-remplissage',d);
-  if(d.Nom)document.getElementById('nom').value=d.Nom;
-  if(d.Prénom)document.getElementById('prenom').value=d.Prénom;
-  if(d.Téléphone)elems.tel.value=d.Téléphone;
-  if(d.Profession)document.getElementById('profession').value=d.Profession;
-  const tNum=d['Type Numéro']||'';
-  if(tNum==='adeli'){elems.radioAdeli.checked=true;elems.qAdeli.classList.remove('hidden');elems.suite.classList.remove('hidden');if(d['Numéro ADELI'])elems.inputAdeli.value=d['Numéro ADELI']}
-  else if(tNum==='siret'){elems.radioSiret.checked=true;elems.qSiret.classList.remove('hidden');elems.suite.classList.remove('hidden');if(d['Numéro SIRET'])elems.inputSiret.value=d['Numéro SIRET']}
-  else if(tNum==='non'){elems.radioNon.checked=true;elems.msgStop.classList.remove('hidden')}
-  if(d.Publics){const ps=d.Publics.split(', ');document.querySelectorAll('input[type="checkbox"][value]').forEach(cb=>{if(ps.includes(cb.value))cb.checked=true})}
-  if(d.Visio)document.querySelectorAll('input[name="visio"]').forEach(r=>{if(r.value===d.Visio)r.checked=true});
-  if(d.Département)elems.dept.value=d.Département;
-  if(d.Commune)elems.commune.value=d.Commune;
-  if(d.Rayon)elems.rayon.value=d.Rayon;
-  if(d['A Disponibilité']==='Oui'){elems.dispoOui.checked=true;elems.qDate.classList.remove('hidden');if(d['Date Disponibilité'])elems.dateD.value=d['Date Disponibilité']}
-  else elems.dispoNon.checked=true;
-  document.getElementById('consentement').checked=true;
+inputAdeli.addEventListener('input', () => inputAdeli.value = inputAdeli.value.replace(/\D/g, ''));
+inputSiret.addEventListener('input', () => inputSiret.value = inputSiret.value.replace(/\D/g, ''));
+inputTelephone.addEventListener('input', () => inputTelephone.value = inputTelephone.value.replace(/\D/g, ''));
+inputCode.addEventListener('input', () => inputCode.value = inputCode.value.replace(/\D/g, ''));
+
+async function preremplirFormulaire(userData) {
+  console.log('🔄 Pré-remplissage:', userData);
+  
+  if (!userData) return;
+
+  function getVal(key1, key2) {
+    return userData[key1] || userData[key2] || userData[key1.toLowerCase()] || 
+           userData[key1.toLowerCase().replace(/\s+/g, '')] || '';
+  }
+
+  const nom = getVal('Nom', 'nom');
+  const prenom = getVal('Prénom', 'prenom');
+  const telephone = getVal('Téléphone', 'telephone');
+  const profession = getVal('Profession', 'profession');
+  
+  if (nom) document.getElementById('nom').value = nom;
+  if (prenom) document.getElementById('prenom').value = prenom;
+  if (telephone) document.getElementById('telephone').value = telephone;
+  if (profession) document.getElementById('profession').value = profession;
+
+  const typeNumero = getVal('Type Numéro', 'typenumero');
+  console.log('🔑 Type Numéro:', typeNumero);
+  
+  if (typeNumero === 'adeli') {
+    radioAdeli.checked = true;
+    questionAdeli.classList.remove('hidden');
+    suiteFomulaire.classList.remove('hidden');
+    inputAdeli.setAttribute('required', 'required');
+    const adeliNum = getVal('Numéro ADELI', 'numeroadeli');
+    if (adeliNum) inputAdeli.value = adeliNum;
+  } else if (typeNumero === 'siret') {
+    radioSiret.checked = true;
+    questionSiret.classList.remove('hidden');
+    suiteFomulaire.classList.remove('hidden');
+    inputSiret.setAttribute('required', 'required');
+    const siretNum = getVal('Numéro SIRET', 'numerosiret');
+    if (siretNum) inputSiret.value = siretNum;
+  } else if (typeNumero === 'non') {
+    radioNon.checked = true;
+    messageStop.classList.remove('hidden');
+  }
+
+  const publics = getVal('Publics', 'publics');
+  if (publics) {
+    const publicsList = publics.split(', ');
+    document.querySelectorAll('#checkboxPublics input[type="checkbox"]').forEach(cb => {
+      if (publicsList.includes(cb.value)) cb.checked = true;
+    });
+  }
+
+  const modes = getVal('Modes Intervention', 'modesintervention');
+  if (modes) {
+    const modesList = modes.split(', ');
+    document.querySelectorAll('#checkboxModes input[type="checkbox"]').forEach(cb => {
+      if (modesList.includes(cb.value)) cb.checked = true;
+    });
+  }
+
+  const visio = getVal('Visio', 'visio');
+  if (visio) {
+    document.querySelectorAll('input[name="visio"]').forEach(radio => {
+      if (radio.value === visio) radio.checked = true;
+    });
+  }
+
+  const departement = getVal('Département', 'departement');
+  if (departement) {
+    selectDepartement.value = departement;
+    
+    const commune = getVal('Commune', 'commune');
+    if (commune) {
+      const numDept = departement.split(' ')[0];
+      communeInput.placeholder = '⏳ Chargement...';
+      communeInput.disabled = true;
+
+      try {
+        const resp = await fetch(`${API_GEO_GOUV}/${numDept}/communes`);
+        if (resp.ok) {
+          const communes = await resp.json();
+          communes.sort((a, b) => a.nom.localeCompare(b.nom));
+          toutesLesCommunesDept = communes;
+          communeInput.value = commune;
+          communeInput.disabled = false;
+          communeInput.placeholder = 'Commencez à taper...';
+        }
+      } catch (e) {
+        console.error('Erreur communes:', e);
+        communeInput.disabled = false;
+      }
+    }
+  }
+
+  const rayon = getVal('Rayon', 'rayon');
+  if (rayon) document.getElementById('rayon').value = rayon;
+
+  const aDispo = getVal('A Disponibilité', 'adisponibilite');
+  if (aDispo) {
+    if (aDispo === 'Oui') {
+      radioDispoOui.checked = true;
+      questionDateDispo.classList.remove('hidden');
+      dateDisponibilite.setAttribute('required', 'required');
+      
+      const dateDispo = getVal('Date Disponibilité', 'datedisponibilite');
+      if (dateDispo) {
+        if (dateDispo.includes('/')) {
+          const [j, m, a] = dateDispo.split('/');
+          dateDisponibilite.value = `${a}-${m.padStart(2,'0')}-${j.padStart(2,'0')}`;
+        } else {
+          dateDisponibilite.value = dateDispo;
+        }
+      }
+    } else {
+      radioDispoNon.checked = true;
+    }
+  }
+
+  document.getElementById('consentement').checked = true;
+  console.log('✅ Pré-remplissage terminé');
 }
 
-elems.form.addEventListener('submit',async function(e){
-  e.preventDefault();
-  const now=new Date();
-  const frTime=new Intl.DateTimeFormat('fr-FR',{timeZone:'Europe/Paris',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'}).format(now);
-  const data={
-    Horodateur:frTime,Email:elems.email.value,Nom:document.getElementById('nom').value,Prénom:document.getElementById('prenom').value,Téléphone:elems.tel.value,Profession:document.getElementById('profession').value,
-    'Type Numéro':'','Numéro ADELI':'','Numéro SIRET':'',Publics:'','Modes Intervention':'',Visio:'',Département:elems.dept.value,Commune:elems.commune.value,Rayon:elems.rayon.value,
-    'A Disponibilité':'','Date Disponibilité':'',Consentement:document.getElementById('consentement').checked?"J'accepte":'','Statut Email':'',codeVerifie:'oui'
-  };
-  if(elems.radioAdeli.checked){data['Type Numéro']='adeli';data['Numéro ADELI']=elems.inputAdeli.value}
-  else if(elems.radioSiret.checked){data['Type Numéro']='siret';data['Numéro SIRET']=elems.inputSiret.value}
-  else if(elems.radioNon.checked)data['Type Numéro']='non';
-  const pubs=[];document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb=>pubs.push(cb.value));data.Publics=pubs.join(', ');
-  const visio=document.querySelector('input[name="visio"]:checked');if(visio)data.Visio=visio.value;
-  if(elems.dispoOui.checked){data['A Disponibilité']='Oui';data['Date Disponibilité']=elems.dateD.value}
-  else if(elems.dispoNon.checked)data['A Disponibilité']='Non';
-  if(estNouvelEmail)data['Statut Email']='Nouvel email';
-  else if(emailEnModification)data['Statut Email']='Modification';
-  console.log('📤 Envoi:',data);
-  try{
-    const res=await fetch(GOOGLE_SCRIPT_URL,{method:'POST',body:JSON.stringify(data),headers:{'Content-Type':'text/plain'}});
-    const txt=await res.text();console.log('📩',txt);
-    const r=JSON.parse(txt);
-    if(r.result==='error'){alert(r.message);return}
-    elems.form.reset();elems.success.style.display='block';elems.form.style.display='none';
-  }catch(err){console.error(err);alert('Erreur')}
+inputEmail.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    btnVerifierEmail.click();
+  }
 });
-</script>
-</body>
-</html>
+
+btnVerifierEmail.addEventListener('click', async function() {
+  const email = inputEmail.value.trim();
+
+  if (!email || !email.includes('@')) {
+    alert("⚠️ Veuillez entrer une adresse e-mail valide.");
+    return;
+  }
+
+  btnVerifierEmail.disabled = true;
+  btnVerifierEmail.textContent = "⏳ Vérification...";
+  emailStatus.textContent = "Vérification en cours...";
+  
+  blocQuestions.classList.add('hidden');
+  messageEmailExiste.classList.add('hidden');
+  messageEmailNouveau.classList.add('hidden');
+  codeVerificationBox.classList.add('hidden');
+
+  try {
+    const url = `${GOOGLE_SCRIPT_URL}?action=verifierEmail&email=${encodeURIComponent(email)}`;
+    console.log('🌐 Appel:', url);
+    
+    const response = await fetch(url);
+    const result = await response.json();
+    
+    console.log('📦 Réponse:', result);
+
+    codeGenere = result.code;
+    donneesUtilisateur = result.userData || null;
+
+    if (result.existe) {
+      emailEnModification = email;
+      estNouvelEmail = false;
+      messageEmailExiste.classList.remove('hidden');
+      codeVerificationBox.classList.remove('hidden');
+      emailStatus.textContent = "⚠️ Email existant. Code envoyé.";
+      console.log('✅ Données récupérées:', donneesUtilisateur);
+    } else {
+      estNouvelEmail = true;
+      donneesUtilisateur = null;
+      messageEmailNouveau.classList.remove('hidden');
+      codeVerificationBox.classList.remove('hidden');
+      emailStatus.textContent = "✅ Nouvel email. Code envoyé.";
+    }
+  } catch (error) {
+    console.error('❌ Erreur:', error);
+    emailStatus.textContent = "❌ Erreur de vérification.";
+  }
+
+  btnVerifierEmail.disabled = false;
+  btnVerifierEmail.textContent = "Vérifier mon e-mail";
+});
+
+selectDepartement.addEventListener('change', async function() {
+  const dept = this.value;
+  autocompleteList.innerHTML = '';
+  toutesLesCommunesDept = [];
+
+  if(!dept) return;
+  
+  const numDept = dept.split(' ')[0];
+  communeInput.placeholder = '⏳ Chargement...';
+  communeInput.disabled = true;
+
+  try {
+    const resp = await fetch(`${API_GEO_GOUV}/${numDept}/communes`);
+    if (!resp.ok) throw new Error('Erreur API');
+    
+    const communes = await resp.json();
+    communes.sort((a, b) => a.nom.localeCompare(b.nom));
+    toutesLesCommunesDept = communes;
+    
+    communeInput.placeholder
